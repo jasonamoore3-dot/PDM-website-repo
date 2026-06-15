@@ -90,11 +90,11 @@
   // This number handles all 20 of your uploaded images
   const TOTAL_IMAGES = 20; 
 
-  const images = ["logo.jpg"];
+  const images = ["logo.jpeg"];
   
   // This line is now perfectly customized to look for your ".jpg" file extension!
   for (let i = 1; i <= TOTAL_IMAGES; i++) {
-    images.push("images/" + i + ".jpg");
+    images.push(i + ".jpg");
   }
 
   const grid = document.getElementById("photoGrid");
