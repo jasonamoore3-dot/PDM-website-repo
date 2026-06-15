@@ -29,7 +29,6 @@
   .gallery-item img:hover {
     transform: scale(1.05);
   }
-  /* Popup Window Styling */
   .lightbox {
     display: none;
     position: fixed;
@@ -72,16 +71,10 @@
   <h2>Our Work Gallery</h2>
   <p>Tap any image to zoom and scroll through our latest detailing jobs.</p>
   
-  <div class="gallery-grid">
-    <!-- Add as many images here as you want! Just make sure the file name matches exactly -->
-    <div class="gallery-item"><img src="logo.jpeg" onclick="openLightbox(0)"></div>
-    <!-- You can add your future images here like this: -->
-    <!-- <div class="gallery-item"><img src="work1.jpeg" onclick="openLightbox(1)"></div> -->
-    <!-- <div class="gallery-item"><img src="work2.jpeg" onclick="openLightbox(2)"></div> -->
-  </div>
+  <!-- JavaScript will automatically dump all 20+ images right into this container below -->
+  <div class="gallery-grid" id="photoGrid"></div>
 </div>
 
-<!-- Popup Window Layout -->
 <div id="lightboxWindow" class="lightbox">
   <span class="close-btn" onclick="closeLightbox()">&times;</span>
   <span class="nav-btn prev-btn" onclick="changeImage(-1)">&#10094;</span>
@@ -90,12 +83,26 @@
 </div>
 
 <script>
+  // ⚙️ CHANGE THIS NUMBER WHENEVER YOU UPLOAD NEW PICTURES:
+  const TOTAL_IMAGES = 20; 
+
+  const images = ["logo.jpeg"];
+  
+  // This automatically fills your image list with 1.jpg, 2.jpg, etc.
+  for (let i = 1; i <= TOTAL_IMAGES; i++) {
+    images.push(i + ".jpg");
+  }
+
+  // This automatically builds the HTML structure on your page for all images
+  const grid = document.getElementById("photoGrid");
+  images.forEach((imgSrc, index) => {
+    const item = document.createElement("div");
+    item.className = "gallery-item";
+    item.innerHTML = `<img src="${imgSrc}" onclick="openLightbox(${index})" alt="Detailing Work">`;
+    grid.appendChild(item);
+  });
+
   let currentImgIndex = 0;
-  // Put the exact list of your image paths here in order
-  const images = [
-    "logo.jpeg"
-    // Add your other images here separated by commas: "work1.jpeg", "work2.jpeg"
-  ];
 
   function openLightbox(index) {
     currentImgIndex = index;
@@ -114,7 +121,6 @@
     document.getElementById("lightboxImg").src = images[currentImgIndex];
   }
 
-  // Close popup if they tap the background outside the picture
   document.getElementById("lightboxWindow").addEventListener("click", function(e) {
     if (e.target === this) closeLightbox();
   });
