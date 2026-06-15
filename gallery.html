@@ -1,21 +1,124 @@
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Gallery</title>
-<link rel="stylesheet" href="assets/style.css">
-<script src="assets/script.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gallery - PDM Mobile Detailing</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    padding: 20px;
+  }
+  .gallery-item {
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 8px;
+    border: 1px solid var(--blue);
+    aspect-ratio: 1 / 1;
+  }
+  .gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.2s;
+  }
+  .gallery-item img:hover {
+    transform: scale(1.05);
+  }
+  /* Popup Window Styling */
+  .lightbox {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(3, 11, 42, 0.95);
+    align-items: center;
+    justify-content: center;
+  }
+  .lightbox img {
+    max-width: 90%;
+    max-height: 80%;
+    border-radius: 8px;
+    border: 2px solid var(--blue);
+  }
+  .close-btn, .nav-btn {
+    position: absolute;
+    color: white;
+    font-size: 35px;
+    font-weight: bold;
+    cursor: pointer;
+    user-select: none;
+    background: rgba(11, 22, 61, 0.7);
+    padding: 5px 15px;
+    border-radius: 5px;
+  }
+  .close-btn { top: 20px; right: 20px; }
+  .prev-btn { left: 20px; }
+  .next-btn { right: 20px; }
+</style>
 </head>
 <body>
+
 <header>
-<img src="images/logo.jpeg" class="logo">
-<a class="btn" href="index.html">Home</a>
+<a href="index.html"><img src="logo.jpeg" class="logo" alt="PDM Logo"></a>
+<a class="btn" href="contact.html">Book Now</a>
 </header>
 
 <div class="section">
-<h1>Gallery</h1>
-<div class="card">Before & After photos will go here</div>
+  <h2>Our Work Gallery</h2>
+  <p>Tap any image to zoom and scroll through our latest detailing jobs.</p>
+  
+  <div class="gallery-grid">
+    <!-- Add as many images here as you want! Just make sure the file name matches exactly -->
+    <div class="gallery-item"><img src="logo.jpeg" onclick="openLightbox(0)"></div>
+    <!-- You can add your future images here like this: -->
+    <!-- <div class="gallery-item"><img src="work1.jpeg" onclick="openLightbox(1)"></div> -->
+    <!-- <div class="gallery-item"><img src="work2.jpeg" onclick="openLightbox(2)"></div> -->
+  </div>
 </div>
+
+<!-- Popup Window Layout -->
+<div id="lightboxWindow" class="lightbox">
+  <span class="close-btn" onclick="closeLightbox()">&times;</span>
+  <span class="nav-btn prev-btn" onclick="changeImage(-1)">&#10094;</span>
+  <img id="lightboxImg" src="" alt="Popup View">
+  <span class="nav-btn next-btn" onclick="changeImage(1)">&#10095;</span>
+</div>
+
+<script>
+  let currentImgIndex = 0;
+  // Put the exact list of your image paths here in order
+  const images = [
+    "logo.jpeg"
+    // Add your other images here separated by commas: "work1.jpeg", "work2.jpeg"
+  ];
+
+  function openLightbox(index) {
+    currentImgIndex = index;
+    document.getElementById("lightboxImg").src = images[currentImgIndex];
+    document.getElementById("lightboxWindow").style.display = "flex";
+  }
+
+  function closeLightbox() {
+    document.getElementById("lightboxWindow").style.display = "none";
+  }
+
+  function changeImage(direction) {
+    currentImgIndex += direction;
+    if (currentImgIndex >= images.length) currentImgIndex = 0;
+    if (currentImgIndex < 0) currentImgIndex = images.length - 1;
+    document.getElementById("lightboxImg").src = images[currentImgIndex];
+  }
+
+  // Close popup if they tap the background outside the picture
+  document.getElementById("lightboxWindow").addEventListener("click", function(e) {
+    if (e.target === this) closeLightbox();
+  });
+</script>
 
 </body>
 </html>
