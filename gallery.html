@@ -62,16 +62,20 @@
 </head>
 <body>
 
-<header>
-<a href="index.html"><img src="logo.jpeg" class="logo" alt="PDM Logo"></a>
-<a class="btn" href="contact.html">Book Now</a>
+<header style="display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; background: var(--navy); border-bottom: 2px solid var(--blue); flex-wrap: wrap; gap: 15px;">
+  <a href="index.html" style="display: flex; align-items: center;"><img src="logo.jpeg" class="logo" alt="PDM Logo" style="height: 60px;"></a>
+  <nav style="display: flex; gap: 20px; align-items: center;">
+    <a href="index.html" style="font-weight: bold; font-size: 15px;">Home</a>
+    <a href="services.html" style="font-weight: bold; font-size: 15px;">Services</a>
+    <a href="pricing.html" style="font-weight: bold; font-size: 15px;">Pricing</a>
+    <a href="gallery.html" style="font-weight: bold; font-size: 15px;">Gallery</a>
+    <a class="btn" href="contact.html" style="padding: 8px 15px; background: var(--blue); border-radius: 6px;">Book Now</a>
+  </nav>
 </header>
 
 <div class="section">
   <h2>Our Work Gallery</h2>
   <p>Tap any image to zoom and scroll through our latest detailing jobs.</p>
-  
-  <!-- JavaScript will automatically dump all 20+ images right into this container below -->
   <div class="gallery-grid" id="photoGrid"></div>
 </div>
 
@@ -83,17 +87,16 @@
 </div>
 
 <script>
-  // ⚙️ CHANGE THIS NUMBER WHENEVER YOU UPLOAD NEW PICTURES:
+  // This number handles all 20 of your uploaded images
   const TOTAL_IMAGES = 20; 
 
   const images = ["logo.jpeg"];
   
-  // This automatically fills your image list with 1.jpg, 2.jpg, etc.
+  // This line is now perfectly customized to look for your ".jpg.jpeg" file extension!
   for (let i = 1; i <= TOTAL_IMAGES; i++) {
-    images.push(i + ".jpg");
+    images.push(i + ".jpg.jpeg");
   }
 
-  // This automatically builds the HTML structure on your page for all images
   const grid = document.getElementById("photoGrid");
   images.forEach((imgSrc, index) => {
     const item = document.createElement("div");
