@@ -1,32 +1,160 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Contact</title>
-<link rel="stylesheet" href="assets/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Book Service | PDM Mobile Detailing</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  .form-group {
+    margin-bottom: 20px;
+  }
+  .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: var(--blue);
+    font-size: 14px;
+  }
+  .form-control {
+    width: calc(100% - 24px);
+    padding: 12px;
+    background: var(--navy);
+    border: 1px solid var(--blue);
+    border-radius: 8px;
+    color: white;
+    font-size: 16px;
+  }
+  .form-control:focus {
+    outline: none;
+    border-color: var(--white);
+    box-shadow: 0 0 8px rgba(79, 169, 217, 0.4);
+  }
+  select.form-control {
+    width: 100%;
+  }
+</style>
 </head>
 <body>
-<header>
-<img src="images/logo.jpeg" class="logo">
-<a class="btn" href="index.html">Home</a>
+
+<!-- Navigation Header Bar -->
+<header style="display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; background: var(--navy); border-bottom: 2px solid var(--blue); flex-wrap: wrap; gap: 15px;">
+  <a href="index.html" style="display: flex; align-items: center;"><img src="logo.jpeg" class="logo" alt="PDM Logo" style="height: 60px;"></a>
+  <nav style="display: flex; gap: 20px; align-items: center;">
+    <a href="index.html" style="font-weight: bold; font-size: 15px;">Home</a>
+    <a href="gallery.html" style="font-weight: bold; font-size: 15px;">Gallery</a>
+    <a class="btn" href="contact.html" style="padding: 8px 15px; background: var(--blue); border-radius: 6px;">Book Now</a>
+  </nav>
 </header>
 
-<div class="section">
-<h1>Contact</h1>
+<div class="section" style="max-width: 600px;">
+  <h2>Request a Mobile Detailing Slot</h2>
+  <p style="color: var(--silver); margin-bottom: 30px;">Fill out the form below or contact us directly. Booking notifications are sent immediately to the PDM review desk.</p>
 
-<div class="card">
-Call: <a href="tel:8283900861">(828) 390-0861</a>
+  <!-- Direct Call/Text & Email Directory Card -->
+  <div class="card" style="padding: 20px; margin-bottom: 30px; border-color: var(--blue); background: var(--navy2);">
+    <h3 style="margin-top: 0; color: var(--white); font-size: 18px; margin-bottom: 15px;">Direct Contact Info</h3>
+    
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 15px; font-size: 15px;">
+      <!-- Phone Line 1 -->
+      <div>
+        <p style="margin: 0 0 5px 0; color: var(--blue); font-weight: bold;">Jason Moore</p>
+        <div style="margin-bottom: 8px;">
+          <a href="tel:8283900861" class="btn" style="padding: 6px 12px; font-size: 14px; margin-right: 5px;">Call Line</a>
+          <a href="sms:+18283900861" class="btn" style="padding: 6px 12px; font-size: 14px; background: var(--silver); color: var(--navy);">Text Line</a>
+        </div>
+        <p style="margin: 5px 0 0 0; color: var(--white); font-weight: bold;">(828) 390-0861</p>
+      </div>
+
+      <!-- Phone Line 2 -->
+      <div>
+        <p style="margin: 0 0 5px 0; color: var(--blue); font-weight: bold;">Secondary Booking Line</p>
+        <div style="margin-bottom: 8px;">
+          <a href="tel:8288516889" class="btn" style="padding: 6px 12px; font-size: 14px; margin-right: 5px;">Call Line</a>
+          <a href="sms:+18288516889" class="btn" style="padding: 6px 12px; font-size: 14px; background: var(--silver); color: var(--navy);">Text Line</a>
+        </div>
+        <p style="margin: 5px 0 0 0; color: var(--white); font-weight: bold;">(828) 851-6889</p>
+      </div>
+    </div>
+
+    <!-- Connected Inboxes Info -->
+    <div style="margin-top: 20px; padding-top: 15px; border-top: 1px solid rgba(79, 169, 217, 0.2); font-size: 14px; color: var(--silver);">
+      <p style="margin: 0 0 5px 0; font-weight: bold; color: var(--blue);">Business Inboxes:</p>
+      <p style="margin: 0; font-family: monospace;">jmoore.pdm@gmail.com</p>
+      <p style="margin: 4px 0 0 0; font-family: monospace;">empire.pdm@gmail.com</p>
+    </div>
+  </div>
+
+  <!-- Formspree Integration Container -->
+  <form action="https://formspree.io" method="POST" class="card" style="padding: 25px;">
+    
+    <!-- Customer Info -->
+    <div class="form-group">
+      <label for="name">Your Full Name</label>
+      <input type="text" id="name" name="name" class="form-control" placeholder="John Doe" required>
+    </div>
+
+    <div class="form-group">
+      <label for="phone">Phone Number</label>
+      <input type="tel" id="phone" name="phone" class="form-control" placeholder="(828) 555-0123" required>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email Address</label>
+      <input type="email" id="email" name="_replyto" class="form-control" placeholder="johndoe@gmail.com" required>
+    </div>
+
+    <!-- Vehicle Details -->
+    <div class="form-group">
+      <label for="vehicle">Vehicle Make & Model</label>
+      <input type="text" id="vehicle" name="vehicle" class="form-control" placeholder="e.g. 2022 Ford F-150 SuperCrew" required>
+    </div>
+
+    <!-- Package Dropdown Auto-Selector -->
+    <div class="form-group">
+      <label for="packageSelect">Requested Service Package</label>
+      <select id="packageSelect" name="package" class="form-control" required style="background: var(--navy); color: white; padding: 12px; border-radius: 8px;">
+        <option value="">-- Choose a Detailing Option --</option>
+        <option value="Basic Wash & Detail">Basic Wash & Detail</option>
+        <option value="Full Interior Detail">Full Interior Detail</option>
+        <option value="The Works Package">The Works Package</option>
+        <option value="Paint Correction">Paint Correction</option>
+        <option value="Ceramic Coating">Ceramic Coating</option>
+        <option value="Headlamp Restoration">Headlamp Restoration</option>
+        <option value="Trim Restoration">Trim Restoration</option>
+        <option value="Custom Plan / Multiple Fleet">Custom Plan / Multiple Fleet</option>
+      </select>
+    </div>
+
+    <!-- Appointment Preferences -->
+    <div class="form-group">
+      <label for="notes">Additional Service Notes or Preferences</label>
+      <textarea id="notes" name="message" class="form-control" rows="4" placeholder="List any special requests or heavy staining issues here..." style="font-family: Arial; resize: vertical; width: calc(100% - 24px);"></textarea>
+    </div>
+
+    <!-- Honeypot Spam Shield Filter -->
+    <input type="text" name="_honey" style="display:none">
+
+    <button type="submit" class="btn" style="width: 100%; padding: 14px; font-size: 16px; font-weight: bold; margin-top: 10px; border: none; cursor: pointer;">Submit Booking Request</button>
+  </form>
 </div>
 
-<div class="card">
-Text Quote: <a href="sms:+18283900861">Send Text</a>
-</div>
-
-<div class="card">
-Service Area: Hickory NC, Burke, Catawba, Caldwell
-</div>
-
-</div>
+<!-- Automatic Package Parameter Reader Utility -->
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(window.location.search);
+    const selectedPackage = params.get('package');
+    if (selectedPackage) {
+      const selectDropdown = document.getElementById('packageSelect');
+      for (let i = 0; i < selectDropdown.options.length; i++) {
+        if (selectDropdown.options[i].value === selectedPackage) {
+          selectDropdown.selectedIndex = i;
+          break;
+        }
+      }
+    }
+  });
+</script>
 
 </body>
 </html>
